@@ -1,0 +1,21 @@
+package matchings
+
+import matchings.Permutation
+
+model PermutedClustering {
+  param Integer nGroups
+  param Integer groupSize
+  random List<RealVar> means ?: latentRealList(groupSize)
+  random List<RealVar> variances ?: latentRealList(groupSize)
+  random List<Permutation> permutations ?: {
+    val result = new ArrayList
+    for (group : 0 ..< nGroups) 
+      result.add(new Permutation(groupSize))
+    return result
+  }
+  random Matrix observations ?: latentMatrix(nGroups, groupSize)
+  
+  laws {
+    // Fill this. 
+  }
+}

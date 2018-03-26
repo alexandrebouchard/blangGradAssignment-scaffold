@@ -1,0 +1,61 @@
+plugins {
+  id 'org.xtext.xtend' version '1.0.19'
+  id 'org.xtext.builder' version '1.0.19'
+  id 'java'
+  id 'eclipse'
+}
+
+xtext {
+  languages {
+    blang {
+      setup = 'ca.ubc.stat.blang.BlangDslStandaloneSetup'
+      fileExtension = 'bl'
+      generator.outlet.producesJava = true
+      generator.javaSourceLevel = '1.8'
+    }
+  }
+}
+
+eclipse { 
+  classpath {
+    defaultOutputDir = file('bin')
+  }
+  project {
+    resourceFilter {
+      appliesTo = 'FOLDERS'
+      type = 'EXCLUDE_ALL'
+      matcher {
+        id = 'org.eclipse.ui.ide.multiFilter'
+        arguments = '1.0-name-matches-false-false-nextflow'
+      }
+    }
+  }
+}
+
+repositories {
+  mavenCentral()
+  jcenter()
+  maven {
+    url "https://www.stat.ubc.ca/~bouchard/maven/"
+  }
+  maven {
+    url "http://www.biojava.org/download/maven/"
+  }
+}
+
+dependencies {
+  xtextLanguages "ca.ubc.stat.blang:ca.ubc.stat.blang:3.25.1"
+  compile group: 'ca.ubc.stat', name: 'blangSDK', version: '1.7.1'
+}
+
+xtend {
+  generator {
+    javaSourceLevel = 1.8
+  }
+}
+
+task printClasspath {
+    doLast {
+        configurations.testRuntime.each { println "CLASSPATH-ENTRY " + it }
+    }
+}
