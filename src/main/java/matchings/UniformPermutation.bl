@@ -8,7 +8,7 @@ model UniformPermutation {
   
   laws {
     logf(permutation) {
-      - logFactorial(permutation.nObjects)
+      - logFactorial(permutation.componentSize)
     }
   }
   generate(rand) {

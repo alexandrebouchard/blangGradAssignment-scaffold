@@ -1,0 +1,17 @@
+package matchings
+
+import matchings.BipartiteMatching
+
+model UniformBipartiteMatching {
+  random BipartiteMatching matching 
+  
+  laws {
+    logf(matching) {
+      - matching.logNormalization
+    }
+  }
+  generate(rand) {
+    matching.sampleUniform(rand)
+  }
+  
+}

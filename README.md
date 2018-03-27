@@ -6,8 +6,9 @@ I assume you have already done the following (lecture and office hour last week)
 
 - Install Blang IDE.
 - Signed up to github (a free account is enough).
-- Some basic exposure to Blang (from Sohrab's tutorial and/or the [Blang documentation](https://www.stat.ubc.ca/~bouchard/blang/)). Feel free to ask questions on Piazza and office hours. Try to start in advance of the deadline.
+- Some basic exposure to Blang (from Sohrab's tutorial and/or the [Blang documentation](https://www.stat.ubc.ca/~bouchard/blang/)). Feel free to ask questions on Piazza and office hours. 
 
+We strongly encourage that you come to Wednesday office hours to get started so that we can provide more guidance.
 
 ## Setup
 
@@ -17,21 +18,21 @@ I assume you have already done the following (lecture and office hour last week)
 - Import the project into eclipse.
 
 
-## Implementing a sampler over matchings
+## Implementing samplers over matchings
 
-Efficient sampling over combinatorial spaces is an extremely important but neglected problem. For example, in computational biology, a vast array of pipelines depend on [multiple sequence alignment](XXXXX). It is well known that treating multiple sequence alignment as a maximization problem gives rise to issues such as over-alignment and incomplete assessment of uncertainty. The problem is neglected in part because of the scarcity of tools that help to face the challenges involved with the construction of correct and efficient samplers over combinatorial spaces. Blang alleviates this issue: we overview here a powerful testing framework for such samplers.
+Efficient sampling over combinatorial spaces is an extremely important but neglected problem. For example, in computational biology, a vast array of pipelines depend on [multiple sequence alignment](https://en.wikipedia.org/wiki/Multiple_sequence_alignment). It is well known that treating multiple sequence alignment as a maximization problem gives rise to issues such as over-alignment and incomplete assessment of uncertainty. The problem is neglected in part because of the scarcity of tools that help to face the challenges involved with the construction of correct and efficient samplers over combinatorial spaces. Blang alleviates this issue: we overview here a powerful testing framework for such samplers.
 
 
 ### Tour of the code harness
 
 Use ``Open Type`` in eclipse to open and read the comments in the following files:
  
-- ``Permutation.xtend``
+- ``Permutation.xtend`` (look also into its base class, ``MatchingBase.xtend``)
 - ``UniformPermutation.bl``
 - ``PermutationSampler.java``
 
 
-### Basic sampler
+### Basic sampler for permutations
 
 Design an invariant and irreducible sampler for permutations. Describe formally the proposed moved and establish irreducibility and invariance with respect to the uniform distribution on the space of perfect bipartite matchings (equivalently, permutations).
 
@@ -82,11 +83,18 @@ To submit your code, we use a Continuous Integration framework which automatical
 Note: if, in the future, you are interested in using this for your own code (there are tools to make this works for pretty much any programming languages), there will be one extra step to do (setting up a ``.travis.yml`` file in the repo, which I have done for you in this assignment). This is explained at [https://docs.travis-ci.com/user/getting-started/](https://docs.travis-ci.com/user/getting-started/). 
 
 
+### Bipartite matching (non-perfect)
+
+To make things a bit more interesting, consider now the problem of sampling bipartite matchings, i.e. we do not require the matching to be perfect anymore (vertices do not have to be covered). 
+
+The datastructure is implemented for you in ``BipartiteMatching.xtend``, which you should have a look at. Your job is to implement a sampler for this combinatorial space in ``BipartiteMatchingSampler.java``, which you can test via ``TestBipartiteMatching.xtend``.
+
+
 ## A statistical model involving a combinatorial space
 
 ### Motivation
 
-To motivate the model we explore in this question, consider a sport such as golf or track and fields where the players do not interact. Suppose we follow five players repetively competing against each other. Let us model each player with an inherent unobserved strength (i.e. a mean parameter for each player) and an inherent performance variability (a variance parameter for each player). We will use the following simplistic model:
+To motivate the model we explore in this question, consider a sport such as golf or track and fields where the players do not interact. Suppose we follow five players repetitively competing against each other. Let us model each player with an inherent unobserved strength (i.e. a mean parameter for each player) and an inherent performance variability (a variance parameter for each player). We will use the following simplistic model:
 
 - The weakest player has a mean uniformly distributed between zero and one.
 - Compared to the weakest, the second weakest player's mean is higher by an increment uniformly distributed between zero and one.

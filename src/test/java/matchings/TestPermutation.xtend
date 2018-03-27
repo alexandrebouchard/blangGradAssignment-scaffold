@@ -14,7 +14,7 @@ class TestPermutation {
   val static DiscreteMCTest test = 
     new DiscreteMCTest(
       new SampledModel(unifPermutationModel), 
-      [new ArrayList((model as UniformPermutation).permutation.indices)]
+      [new ArrayList((model as UniformPermutation).permutation.getConnections)]
     )
   
   @Test 

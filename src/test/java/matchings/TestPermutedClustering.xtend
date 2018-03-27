@@ -20,7 +20,7 @@ class TestPermutedClustering {
     [means.get(0).doubleValue],
     [variances.get(0).doubleValue],
     [observations.get(0,0)],
-    [means.get(permutations.get(0).indices.get(0)).doubleValue]  
+    [means.get(permutations.get(0).getConnections.get(0)).doubleValue]  
   )
   
   @Test
