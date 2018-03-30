@@ -45,7 +45,7 @@ repositories {
 
 dependencies {
   xtextLanguages "ca.ubc.stat.blang:ca.ubc.stat.blang:3.25.1"
-  compile group: 'ca.ubc.stat', name: 'blangSDK', version: '1.7.1'
+  compile group: 'ca.ubc.stat', name: 'blangSDK', version: '1.7.2'
 }
 
 xtend {
